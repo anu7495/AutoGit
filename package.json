@@ -1,0 +1,9 @@
+{
+    "name": "AutoGit",
+    "version": "0.0.1",
+    "description": "Performs git status,add and commit in a directory",
+    "preferGlobal": "true",
+    "bin": { "autogit": "index.js" },
+    "author": "Anubhav7495",
+    "engines": { "node": "*" }
+}
