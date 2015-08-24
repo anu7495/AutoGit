@@ -24,7 +24,7 @@ function autogit() {
   });
 
   add.on('close', function(){
-    var commit = require('child_process').spawn('git', ['commit', '-m', process.argv[2]]);
+    var commit = spawn('git', ['commit', '-m', process.argv[2]]);
   });
 }
 
