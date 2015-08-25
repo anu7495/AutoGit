@@ -8,24 +8,30 @@ var check = test('git add -u -n', function(err, stdout, stderr){
     autogit();
 });
 
+function myTrim(x) {
+    return x.replace(/^\s+/,'');
+}
+
 function autogit() {
   var spawn = require('child_process').spawn;
+  var st, ad;
 
   var status = spawn('git', ['status', '-s', '-uno']);
 
   status.stdout.on('data', function(data){
-    console.log(data.toString());
+    st = data.toString();
   });
 
   var add = spawn('git', ['add', '-u', '-v']);
 
   add.stdout.on('data', function(data){
-    console.log(data.toString());
+    ad = data.toString();
   });
 
   add.on('close', function(){
     var commit = spawn('git', ['commit', '-m', process.argv[2]]);
+    commit.on('close', function(){
+      console.log(myTrim(st) + ad + 'commit successful');
+    });
   });
 }
-
-
