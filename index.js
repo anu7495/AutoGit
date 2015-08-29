@@ -1,14 +1,20 @@
 #! /usr/bin/env node
 var chalk = require('chalk');
-
 var test = require('child_process').exec;
 
 var check = test('git add -u -n', function(err, stdout, stderr){
   if(stdout.length == 0)
     console.log(chalk.red.bold('No Files Modified.'));
   else
-    autogit();
+    argvtest();
 });
+
+function argvtest() {
+  if(!process.argv[2])
+    console.log(chalk.red.bold('No Commit Message Specified'));
+  else
+    autogit();
+}
 
 function autogit() {
   var spawn = require('child_process').spawn;
@@ -23,16 +29,18 @@ function autogit() {
     }
   });
 
-  var add = spawn('git', ['add', '-u', '-v']);
+  status.on('close', function(){
+    var add = spawn('git', ['add', '-u', '-v']);
 
-  add.stdout.on('data', function(data){
-    console.log(chalk.blue(data.toString()));
-  });
-
-  add.on('close', function(){
-    var commit = spawn('git', ['commit', '-m', process.argv[2]]);
-    commit.on('close', function(){
-      console.log(chalk.green.bold('Commit Successful'));
+    add.stdout.on('data', function(data){
+      console.log(chalk.blue(data.toString()));
     });
-  });
+
+    add.on('close', function(){
+      var commit = spawn('git', ['commit', '-m', process.argv[2]]);
+      commit.on('close', function(){
+        console.log(chalk.green.bold('Commit Successful'));
+      });
+    });  
+  });  
 }
