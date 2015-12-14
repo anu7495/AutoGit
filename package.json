@@ -1,10 +1,28 @@
 {
-    "name": "AutoGit",
+    "name": "autoGit",
     "version": "0.0.1",
-    "description": "Performs git status,add and commit in a directory",
+    "description": "A command line utility to Git Add all modified files and commit them.",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/anubhav7495/Autogit.git"
+    },
     "preferGlobal": "true",
     "bin": { "autogit": "index.js" },
+    "keywords": [
+      "shell",
+      "spawn",
+      "process",
+      "git",
+      "commit",
+      "github",
+      "cmd"
+    ],
     "author": "Anubhav7495",
+    "license": "ISC",
     "engines": { "node": "*" },
     "dependencies": { "chalk": "latest" }
 }
+
