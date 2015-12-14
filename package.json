@@ -1,5 +1,5 @@
 {
-    "name": "autoGit",
+    "name": "autogit",
     "version": "0.0.1",
     "description": "A command line utility to Git Add all modified files and commit them.",
     "scripts": {
